@@ -31,15 +31,13 @@ Once a valid parameter is selected, you will be able to see its values.*This wor
 If an element within the view is deleted after a scan, attempting to select or isolate this element will trigger a warning message advising you to rescan the view.
 ![image](https://github.com/miguelt21jm/ENG-RevitParameterScanner/assets/101025223/e286525d-fc94-442e-a19b-734b8a4d4dac)
 
-# Tecnical note
+# Technical note
 We utilize the WPF UI by Lepoco, for our user interface elements.
 
-We employ Microsoft.Extensions.DependencyInjection to utilize the IoC container (Service Provider), enhancing our application architecture.
+We employ Microsoft.Extensions.DependencyInjection to utilize the IoC container (Service Provider).
 
 To improve user interface responsiveness and simplicity, we incorporate CalcBinding.
 
 For addressing compatibility issues, we use PolySharp.
 
-To manage MVVM boilerplate code efficiently, we utilize CommunityToolkit.Mvvm.
-
-* All of this package, at the time of creation of this, are licensed under MIT license, which is very permisive.
+To manage MVVM boilerplate code, we utilize CommunityToolkit.Mvvm.
