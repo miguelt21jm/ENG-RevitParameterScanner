@@ -41,3 +41,5 @@ To improve user interface responsiveness and simplicity, we incorporate CalcBind
 For addressing compatibility issues, we use PolySharp.
 
 To manage MVVM boilerplate code efficiently, we utilize CommunityToolkit.Mvvm.
+
+* All of this package, at the time of creation of this, are licensed under MIT license, which is very permisive.
