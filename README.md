@@ -4,7 +4,7 @@ ENG Challenge: Revit Parameter Scanner
 
 ## Revit Parameter scanner
 # Requierments
-Windows 11, .NET Framework 4.8.
+Windows 10/11, .NET Framework 4.8.
 
 # Setup
 We make use of PostBuild events for copying all the dependencies, so you will be done by download this repository and building the solution in order to have all the necessary dependencies on you computer's revit installation.
