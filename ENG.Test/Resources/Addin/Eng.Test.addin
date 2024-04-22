@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>Eng Challenge</Name>
+		<Assembly>Eng Test\ENG.Test.dll</Assembly>
+		<AddInId>B8608F27-078C-4A4C-9FE7-5873A61578DB</AddInId>
+		<FullClassName>ENG.Test.Addin.Application</FullClassName>
+		<VendorId>Miguel</VendorId>
+		<VendorDescription>https://www.linkedin.com/in/migueltamara/</VendorDescription>
+	</AddIn>
+</RevitAddIns>

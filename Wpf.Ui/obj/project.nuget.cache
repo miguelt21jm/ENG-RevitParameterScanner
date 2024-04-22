@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "mEWHaR43d7eHIga9H/Gmjet1Th5vMoPbOMdLDgab1jSBpf5yQhH8agIQp2y62Pvxgb4wIgaBwg82IYsYXlXszg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\57319\\.nuget\\packages\\polysharp\\1.14.1\\polysharp.1.14.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,244 @@
+﻿<ui:FluentWindow
+    x:Class="ENG.Test.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:converters="clr-namespace:ENG.Test.Resources.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ENG.Test.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="MainView"
+    Width="800"
+    Height="500"
+    MinWidth="800"
+    MinHeight="500"
+    d:DataContext="{d:DesignInstance local:MainView,
+                                     IsDesignTimeCreatable=False}"
+    WindowStartupLocation="CenterOwner"
+    mc:Ignorable="d">
+
+    <ui:FluentWindow.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary />
+                <ui:ControlsDictionary />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ui:FluentWindow.Resources>
+    <!--  Main Grid  -->
+    <Grid Background="{DynamicResource WindowBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Header Stack Panel  -->
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <ui:TitleBar Title="ENG Challenge" />
+            <Grid Margin="200,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  View scanner Notification  -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <!--  Current view text  -->
+                    <ui:TextBlock
+                        Margin="10,0,0,0"
+                        FontTypography="Caption"
+                        Foreground="{DynamicResource TextPlaceholderColorBrush}"
+                        Text="Current view:" />
+                    <ui:TextBlock
+                        Margin="10,0,0,0"
+                        FontTypography="Caption"
+                        Foreground="{DynamicResource TextPlaceholderColorBrush}"
+                        Text="{Binding ViewModel.ActiveViewName, Mode=TwoWay}" />
+
+                    <!--  Warning symbols  -->
+                    <ui:SymbolIcon Margin="10,0,0,0" Foreground="{DynamicResource TextPlaceholderColorBrush}">
+
+                        <!--  Warning, Pending, and Scanned alerts  -->
+                        <ui:SymbolIcon.Style>
+                            <Style TargetType="ui:SymbolIcon">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DataContext.ViewModel.ActiveViewHasBeenScanned, RelativeSource={RelativeSource AncestorType=Window}}" Value="True">
+                                        <Setter Property="Symbol" Value="{x:Static ui:SymbolRegular.Checkmark24}" />
+                                        <Setter Property="ToolTip" Value="The parameters of this view has been scanned." />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{c:Binding '!DataContext.ViewModel.ActiveViewCanBeScanned', RelativeSource={RelativeSource AncestorType=Window}}" Value="True">
+                                        <Setter Property="Symbol" Value="{x:Static ui:SymbolRegular.Warning24}" />
+                                        <Setter Property="ToolTip" Value="This view cannot be scanned. We can only scan on floor, ceiling plans, and 3D Views." />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{c:Binding 'DataContext.ViewModel.ActiveViewCanBeScanned and !DataContext.ViewModel.ActiveViewHasBeenScanned', RelativeSource={RelativeSource AncestorType=Window}}" Value="True">
+                                        <Setter Property="Symbol" Value="{x:Static ui:SymbolRegular.ClockArrowDownload24}" />
+                                        <Setter Property="ToolTip" Value="This view can be scanned but is pending." />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ui:SymbolIcon.Style>
+                    </ui:SymbolIcon>
+                </StackPanel>
+
+                <!--  Implement Scan button  -->
+                <ui:Button
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding ViewModel.ScanCommand}"
+                    Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                    Icon="{ui:SymbolIcon ArrowClockwise24}"
+                    IsEnabled="{c:Binding 'ViewModel.ActiveViewCanBeScanned and !ViewModel.ActiveViewHasBeenScanned'}"
+                    Visibility="{c:Binding '!ViewModel.IsScanning'}" />
+            </Grid>
+        </StackPanel>
+
+        <Border
+            Grid.Column="1"
+            BorderBrush="{DynamicResource NavigationViewContentGridBorderBrush}"
+            BorderThickness="0,0,0,1.6" />
+
+        <!--  Inputs Stack Panel  -->
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="10,0,10,0"
+            VerticalAlignment="Stretch"
+            Background="{DynamicResource ApplicationBackgroundBrush}"
+            IsEnabled="{Binding ViewModel.ActiveViewHasBeenScanned}">
+            <!--  Suggest boxes stack panel  -->
+            <StackPanel>
+                <ui:TextBlock
+                    Margin="0,10,0,0"
+                    FontTypography="Subtitle"
+                    Text="Parameter name" />
+                <!--  Parameter name suggest box  -->
+                <ui:AutoSuggestBox
+                    Margin="0,10,0,0"
+                    IsEnabled="{c:Binding ViewModel.ActiveViewHasBeenScanned}"
+                    OriginalItemsSource="{Binding ViewModel.Parameters, Mode=TwoWay}"
+                    PlaceholderText="Parameter name..."
+                    Text="{Binding ViewModel.SearchedParameter, Mode=TwoWay}" />
+                <ui:TextBlock
+                    FontSize="10"
+                    FontStyle="Italic"
+                    FontTypography="Caption"
+                    Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                    Text="No parameter with this name was found on the view."
+                    Visibility="{c:Binding 'ViewModel.ActiveViewHasBeenScanned and !ViewModel.IsValidSearchParameter'}" />
+
+                <ui:TextBlock
+                    Margin="0,10,0,0"
+                    FontTypography="Subtitle"
+                    Text="Parameter value" />
+                <!--  Parameter value suggest box  -->
+                <ui:AutoSuggestBox
+                    IsEnabled="{c:Binding 'ViewModel.ActiveViewHasBeenScanned and ViewModel.IsValidSearchParameter'}"
+                    OriginalItemsSource="{Binding ViewModel.ParameterValues, Mode=TwoWay}"
+                    PlaceholderText="Parameter value..."
+                    Text="{Binding ViewModel.SearchedParameterValue, Mode=TwoWay}" />
+                <ui:TextBlock
+                    FontSize="10"
+                    FontStyle="Italic"
+                    FontTypography="Caption"
+                    Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                    Text="No value of the parameter was found on this view."
+                    Visibility="{c:Binding 'ViewModel.ActiveViewHasBeenScanned and !ViewModel.IsValidSearchParameterValue and ViewModel.IsValidSearchParameter'}" />
+            </StackPanel>
+            <!--  Select and Isolate button  -->
+            <Grid Margin="0,0,0,20" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ui:Button
+                    Grid.Column="0"
+                    Margin="0,0,10,0"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding ViewModel.IsolateElementsCommand}"
+                    Content="Isolate in view"
+                    Icon="{ui:SymbolIcon Search24}"
+                    IsEnabled="{c:Binding 'ViewModel.ActiveViewHasBeenScanned and ViewModel.IsValidSearchParameterValue'}" />
+                <ui:Button
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding ViewModel.SelectElementsCommand}"
+                    Content="Select"
+                    Icon="{ui:SymbolIcon CursorClick24}"
+                    IsEnabled="{c:Binding 'ViewModel.ActiveViewHasBeenScanned and ViewModel.IsValidSearchParameterValue'}" />
+            </Grid>
+        </Grid>
+
+        <!--  Border on the right part of the (0,1) cell  -->
+        <Border
+            Grid.Row="1"
+            BorderBrush="{DynamicResource NavigationViewContentGridBorderBrush}"
+            BorderThickness="0,0,1.6,0" />
+
+        <!--  Application Image  -->
+        <StackPanel Grid.Row="1" Margin="10,0,10,0">
+            <ui:Image
+                Width="128"
+                Height="128"
+                Margin="0,50,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                BorderBrush="#33000000"
+                BorderThickness="2"
+                CornerRadius="4"
+                Source="pack://application:,,,/ENG.Test;component/Resources/Icons/main-icon-64.png" />
+            <ui:TextBlock
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                FontSize="11"
+                FontStretch="ExtraExpanded"
+                FontStyle="Italic"
+                FontTypography="Caption"
+                Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                Text="The current view cannot be scanned. The only views that can be scanned are: Floor Plans, Reflected Ceiling Plans, and 3D Views."
+                TextWrapping="Wrap"
+                Visibility="{c:Binding !ViewModel.ActiveViewCanBeScanned}" />
+            <ui:TextBlock
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                FontSize="11"
+                FontStretch="ExtraExpanded"
+                FontStyle="Italic"
+                FontTypography="Caption"
+                Foreground="{DynamicResource TextPlaceholderColorBrush}"
+                Text="Please, enter a valid parameter and a parameter value in order to select or isolate elements."
+                TextWrapping="Wrap"
+                Visibility="{c:Binding ViewModel.ActiveViewHasBeenScanned and ViewModel.ActiveViewCanBeScanned}" />
+            <ui:TextBlock
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                FontSize="11"
+                FontStretch="ExtraExpanded"
+                FontStyle="Italic"
+                FontTypography="Caption"
+                Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                Text="Please, scan the parameters of the current view by pressing the arrow clock wise symbol at the right top of this window"
+                TextWrapping="Wrap"
+                Visibility="{c:Binding !ViewModel.ActiveViewHasBeenScanned and ViewModel.ActiveViewCanBeScanned}" />
+        </StackPanel>
+
+        <!--  Snack bar presenter  -->
+        <ui:SnackbarPresenter
+            x:Name="SnackbarPresenter"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="0,0,0,30"
+            VerticalAlignment="Bottom" />
+    </Grid>
+</ui:FluentWindow>

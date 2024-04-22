@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Platforms>x64</Platforms>
+		<UseWPF>true</UseWPF>
+		<LangVersion>Latest</LangVersion>
+		<Configurations>Debug R23</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(Configuration.Contains('R23'))">
+		<RevitVersion>2023</RevitVersion>
+		<TargetFramework>net4.8</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Icons\main-icon-32.png" />
+	  <None Remove="Resources\Icons\main-icon-64.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Resources\Icons\main-icon-32.png" />
+	  <Resource Include="Resources\Icons\main-icon-64.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CalcBinding" Version="2.5.2" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+	  <PackageReference Include="PolySharp" Version="1.14.1">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*" ExcludeAssets="runtime" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Wpf.Ui\Wpf.Ui.csproj" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="if not exist &quot;$(APPDATA)\Autodesk\Revit\Addins\2023\Eng Test\&quot; mkdir &quot;$(APPDATA)\Autodesk\Revit\Addins\2023\Eng Test&quot;&#xD;&#xA;xcopy /y /F &quot;$(TargetDir)*.dll&quot; &quot;$(APPDATA)\Autodesk\Revit\Addins\2023\Eng Test\&quot;&#xD;&#xA;xcopy /y /F &quot;$(TargetDir)*.*&quot; &quot;$(APPDATA)\Autodesk\Revit\Addins\2023\Eng Test\&quot;&#xD;&#xA;&#xD;&#xA;xcopy /y /F &quot;$(ProjectDir)Resources\Addin\Eng.Test.addin&quot; &quot;$(APPDATA)\Autodesk\Revit\Addins\2023&quot;" />
+	</Target>
+
+</Project>

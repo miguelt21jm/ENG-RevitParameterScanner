@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\ENG.Test\\ENG.Test.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\ENG.Test\\ENG.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\ENG.Test\\ENG.Test.csproj",
+        "projectName": "ENG.Test",
+        "projectPath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\ENG.Test\\ENG.Test.csproj",
+        "packagesPath": "C:\\Users\\57319\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\ENG.Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\57319\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net4.8"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net4.8",
+            "projectReferences": {
+              "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj": {
+                "projectPath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net4.8",
+          "dependencies": {
+            "CalcBinding": {
+              "target": "Package",
+              "version": "[2.5.2, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.2, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "PolySharp": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.14.1, )"
+            },
+            "Revit_All_Main_Versions_API_x64": {
+              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[2023.*, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj",
+        "projectName": "Wpf.Ui",
+        "projectPath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj",
+        "packagesPath": "C:\\Users\\57319\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\57319\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "PolySharp": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.14.1, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

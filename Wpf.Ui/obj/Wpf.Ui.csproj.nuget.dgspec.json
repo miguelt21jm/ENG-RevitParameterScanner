@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj",
+        "projectName": "Wpf.Ui",
+        "projectPath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\Wpf.Ui.csproj",
+        "packagesPath": "C:\\Users\\57319\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\57319\\source\\repos\\ENG.Test\\ENG-RevitParameterScanner\\Wpf.Ui\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\57319\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "PolySharp": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.14.1, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
